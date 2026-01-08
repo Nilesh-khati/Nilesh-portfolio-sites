@@ -1,0 +1,169 @@
+{
+  "personal": {
+    "name": "Nilesh Khati",
+    "title": "Full Stack Developer",
+    "tagline": "Building modern web experiences with the MERN stack",
+    "email": "nileshmalviya0000@gmail.com",
+    "phone": "+91 8817018104",
+    "location": "Indore, India - 452010",
+    "linkedin": "https://linkedin.com/in/nileshkhati",
+    "github": "https://github.com/Nilesh-khati",
+    "profileImage": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1757964141601-M0qOJ1V4hWHWpRRDMLqOpAOhYcyjtd.jpg"
+  },
+  "summary": "Innovative and results-driven web developer with a comprehensive skill set in modern web technologies and a track record of creating visually appealing, high-performance websites and applications. Adept at problem solving and delivering projects on time, I am eager to bring my expertise in HTML, CSS, JavaScript, React, Node.js, and database management to a forward-thinking company. Passionate about leveraging my technical skills and creativity to drive user engagement and business growth.",
+  "experience": [
+    {
+      "id": "1",
+      "title": "Full Stack Developer Intern",
+      "company": "ModelSuite.ai",
+      "companyUrl": "https://modelsuit.ai",
+      "duration": "3 months",
+      "period": "08/2025 - 10/2025",
+      "location": "Remote, Adam-Fosshag-Strasse 37, 65428 Rüsselsheim, Germany",
+      "address": "Adam-Fosshag-Strasse 37, 65428 Rüsselsheim, Germany",
+      "description": "ModelSuite.ai provides creator & model management tools — creator CRM, model profiles, task assignment & tracking, content uploads and approval flows, and revenue analytics for creators and modeling platforms.",
+      "responsibilities": [
+        "Architected and implemented backend modules for Courses → Sections → Lessons using Node.js, Express.js, and MongoDB, including CRUD operations, media attachments, drip logic, and JWT-secured access",
+        "Developed a complete Invite Management System supporting both Bulk Invite and Single Invite, using database-driven data (Agencies, Models, Employees), with role-based access control and full send/resend/revoke/accept flows",
+        "Built the Interactive Content System with multiple block types, real-time validation, drag-and-drop reordering, evaluation APIs, and optimized MongoDB schema design",
+        "Implemented a secure Magic-Link Authentication System with validation routes, error handling, and React integration",
+        "Engineered the Lecture PDF Upload System using Multer + Cloudinary raw uploads, supporting upload/list/delete/reorder functionality with scoped queries and metadata persistence",
+        "Delivered an advanced Video Editor: timeline, thumbnails, zoom/scroll controls, subtitles, aspect ratio, crop/rotate, background, media library, and improved player synchronization",
+        "Developed Redux-powered Video Studio and refactored major modules (Bulk Invite, Create/Edit Course, Course Builder) for consistent UI, responsiveness, and state management",
+        "Built responsive and modern React components using Tailwind CSS, enhancing Login, Invite, and Interactive Content UI with improved styling, translation support, and better user experience",
+        "Implemented authentication middleware, permission-based access, and improved routing structure across frontend and backend"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Express.js",
+        "Redux",
+        "JWT",
+        "Multer",
+        "Cloudinary",
+        "Tailwind CSS",
+        "REST APIs"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "MERN Stack Intern",
+      "company": "Flameloop",
+      "companyUrl": "",
+      "duration": "6 months",
+      "period": "07/2024 - 12/2024",
+      "location": "Remote, Indore, India",
+      "address": "Indore, India",
+      "description": "Flameloop is a technology company focused on building scalable web applications and digital solutions.",
+      "responsibilities": [
+        "Contributed to full-stack development by building scalable features using React, Node.js, Express, and MongoDB",
+        "Developed responsive and reusable UI components and integrated them with REST APIs to ensure smooth and efficient user interactions",
+        "Implemented secure routing, middleware logic, and optimized data flow to support various application modules",
+        "Worked on real-time functionalities to enhance interactivity and dynamic user engagement",
+        "Assisted in debugging, testing, and performance optimization, helping improve overall system reliability and application stability"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "REST APIs",
+        "JavaScript"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Computer Applications (MCA)",
+      "institution": "Sage University",
+      "location": "Indore, India",
+      "period": "2023 – 2025",
+      "status": "Completed"
+    },
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "institution": "Vikram University",
+      "location": "Ujjain, India",
+      "period": "2019 – 2022",
+      "status": "Completed"
+    }
+  ],
+  "skills": {
+    "frontend": [
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "JavaScript",
+      "jQuery",
+      "Bootstrap",
+      "React.js"
+    ],
+    "backend": [
+      "Node.js",
+      "Express.js",
+      "RESTful APIs"
+    ],
+    "databases": [
+      "MongoDB",
+      "MySQL"
+    ],
+    "tools": [
+      "Git",
+      "GitHub",
+      "Postman",
+      "VS Code",
+      "Vercel",
+      "Netlify",
+      "Heroku"
+    ],
+    "other": [
+      "AI Tools",
+      "API Integration",
+      "Debugging",
+      "Responsive Design",
+      "Problem Solving"
+    ]
+  },
+  "certificates": [
+    {
+      "name": "MERN Stack Web Development",
+      "issuer": "Universal Informatics",
+      "location": "Indore, India",
+      "description": "Completed hands-on training in MongoDB, Express.js, React, and Node.js. Built capstone projects and deployed live apps."
+    },
+    {
+      "name": "Web Designing Certification",
+      "issuer": "Universal Informatics",
+      "location": "Indore, India",
+      "description": "Learned HTML, CSS, JavaScript, jQuery, and responsive UI best practices."
+    },
+    {
+      "name": "MERN Stack Intern",
+      "issuer": "Flameloop",
+      "location": "Indore, India",
+      "description": "Completed 6-month internship focusing on full-stack development with React, Node.js, Express, and MongoDB. Built scalable features and contributed to real-time web functionalities."
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "title": "E-commerce Web Application",
+      "description": "Built a complete MERN stack e-commerce platform featuring secure user authentication with JWT, dynamic product listings with filtering, search, and pagination, and a shopping cart with real-time price updates.",
+      "longDescription": "Developed an admin dashboard to manage users, products, orders, and inventory. Integrated payment gateways (Razorpay/Stripe) for seamless online transactions and structured the backend with MVC-based RESTful APIs and middleware for error handling and validation.",
+      "technologies": [
+        "React",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Razorpay",
+        "Stripe",
+        "JWT"
+      ],
+      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
+      "github": "https://github.com/nileshkhati/ecommerce-mern",
+      "demo": "https://ecommerce-mern.vercel.app",
+      "featured": true
+    }
+  ]
+}

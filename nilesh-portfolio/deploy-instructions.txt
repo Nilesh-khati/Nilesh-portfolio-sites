@@ -1,0 +1,51 @@
+# Deployment Instructions
+
+## Quick Deploy Options
+
+### Option 1: Replit (Easiest - One Click)
+1. Import this project to Replit
+2. Go to "Secrets" (lock icon) and add:
+   - MONGODB_URI
+   - ADMIN_TOKEN
+   - SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
+3. Click "Run" button
+4. Your site will be live at your-replit-url.repl.co
+
+### Option 2: Vercel (Frontend) + Railway (Backend)
+
+**Frontend (Vercel):**
+1. Push code to GitHub
+2. Go to vercel.com and import your repository
+3. Framework: Next.js
+4. Root directory: ./
+5. Add environment variables (if any NEXT_PUBLIC_* needed)
+6. Deploy
+
+**Backend (Railway):**
+1. Go to railway.app
+2. New Project > Deploy from GitHub
+3. Select your repository
+4. Add environment variables:
+   - MONGODB_URI
+   - ADMIN_TOKEN
+   - SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
+   - PORT=5000
+5. Set start command: `node server/index.js`
+6. Deploy
+7. Copy your Railway backend URL
+8. Update API calls in frontend to use Railway URL
+
+### Option 3: Vercel (Frontend) + Heroku (Backend)
+
+**Backend (Heroku):**
+```bash
+# Install Heroku CLI first
+heroku login
+heroku create your-app-name
+heroku config:set MONGODB_URI=your_uri
+heroku config:set ADMIN_TOKEN=your_token
+heroku config:set SMTP_HOST=smtp.gmail.com
+heroku config:set SMTP_PORT=587
+heroku config:set SMTP_USER=your_email
+heroku config:set SMTP_PASS=your_password
+git push heroku main
