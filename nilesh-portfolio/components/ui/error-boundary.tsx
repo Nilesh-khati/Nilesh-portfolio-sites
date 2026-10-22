@@ -40,7 +40,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             <p className="text-muted-foreground mb-6">{this.state.error?.message || "An unexpected error occurred"}</p>
             <button
               onClick={() => window.location.reload()}
-              className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg transition-colors"
+              className="px-6 py-3 bg-foreground hover:bg-foreground/85 text-background rounded-full transition-colors"
             >
               Reload Page
             </button>

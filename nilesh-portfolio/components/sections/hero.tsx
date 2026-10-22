@@ -1,285 +1,141 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Phone, ArrowRight } from "lucide-react";
-import resumeData from "@/src/content/resume.json";
-import FloatingTechLogos from "@/components/FloatingTechLogos";
+import { motion } from "framer-motion"
+import { Github, Linkedin, Mail, Phone, ArrowRight } from "lucide-react"
+import resumeData from "@/src/content/resume.json"
 
 export default function Hero() {
-  const { personal } = resumeData;
-  const [particles, setParticles] = useState<
-    Array<{ left: number; top: number; duration: number; delay: number }>
-  >([]);
-
-  useEffect(() => {
-    // Generate random positions only on client side to avoid hydration mismatch
-    setParticles(
-      Array.from({ length: 20 }, () => ({
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        duration: 3 + Math.random() * 2,
-        delay: Math.random() * 2,
-      }))
-    );
-  }, []);
+  const { personal } = resumeData
+  const words = personal.name.split(" ")
 
   return (
-    <section
-      id="hero"
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      {/* Cyberpunk Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a14] via-[#1a1a2e] to-[#0f0f1e]">
-        {/* Cyberpunk Grid */}
-        <div className="cyber-grid opacity-30" />
-
-        {/* Floating Tech Logos */}
-        <FloatingTechLogos />
-
-        {/* Animated God Rays */}
+    <section id="hero" className="relative flex min-h-screen items-center px-5 pt-28 pb-16 sm:px-8 sm:pt-32">
+      <div className="mx-auto w-full max-w-6xl">
         <motion.div
-          className="absolute top-1/4 left-1/3 w-96 h-[200%] bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent blur-3xl"
-          animate={{
-            rotate: [12, 15, 12],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] text-muted-foreground"
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-highlight" />
+          Available for new opportunities
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.15, duration: 0.6 }}
+          className="mt-10 text-[11px] uppercase tracking-[0.3em] text-muted-foreground"
+        >
+          Hi, my name is
+        </motion.p>
+
+        <h1 className="mt-4 font-serif text-[64px] leading-[0.88] tracking-[-0.03em] sm:text-[104px] lg:text-[132px]">
+          {words.map((word, i) => (
+            <motion.span
+              key={i}
+              className="block"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 + i * 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {word}
+              {i === words.length - 1 ? <span className="text-highlight">.</span> : null}
+            </motion.span>
+          ))}
+        </h1>
+
         <motion.div
-          className="absolute bottom-1/4 right-1/3 w-96 h-[200%] bg-gradient-to-b from-transparent via-purple-500/20 to-transparent blur-3xl"
-          animate={{
-            rotate: [-12, -15, -12],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        {/* Floating Particles */}
-        {particles.map((particle, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400 rounded-full"
-            style={{
-              left: `${particle.left}%`,
-              top: `${particle.top}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              delay: particle.delay,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        <div className="flex flex-col items-center text-center space-y-4 sm:space-y-5">
-          {/* Greeting with glitch effect */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="relative"
-          >
-            <p className="text-cyan-400 font-bold font-['Orbitron'] text-sm sm:text-base uppercase tracking-wider">
-              <span className="inline-block">Hi, my name is</span>
-              <motion.span
-                className="absolute left-0 text-purple-400 opacity-0"
-                animate={{
-                  opacity: [0, 0.5, 0],
-                  x: [0, -2, 2, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatDelay: 2,
-                }}
-              >
-                Hi, my name is
-              </motion.span>
-            </p>
-          </motion.div>
-
-          {/* Name with gradient */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold font-['Orbitron'] gradient-cyber uppercase tracking-tight leading-tight"
-          >
-            {personal.name.split(" ").map((word, i) => (
-              <motion.span
-                key={i}
-                className={`inline-block ${i < personal.name.split(" ").length - 1 ? "mr-2 sm:mr-3 lg:mr-4" : ""}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + i * 0.1 }}
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.h1>
-
-          {/* Title */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold font-['Orbitron'] text-purple-400 uppercase tracking-wider"
-          >
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45, duration: 0.6 }}
+          className="mt-8 flex flex-col gap-5 sm:mt-10"
+        >
+          <p className="text-sm font-medium uppercase tracking-[0.22em] text-foreground sm:text-base">
             {personal.title}
-          </motion.h2>
-
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="text-base sm:text-lg text-gray-300 max-w-2xl leading-relaxed font-['Rajdhani']"
-          >
+          </p>
+          <p className="max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {personal.tagline}
-          </motion.p>
+          </p>
+        </motion.div>
 
-          {/* Education & Location Badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-            className="flex flex-wrap justify-center gap-4"
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55, duration: 0.6 }}
+          className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2"
+        >
+          <div className="bg-white px-5 py-4">
+            <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Education</div>
+            <div className="mt-1.5 font-serif text-lg leading-snug">MCA — Sage University</div>
+          </div>
+          <div className="bg-white px-5 py-4">
+            <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Based in</div>
+            <div className="mt-1.5 font-serif text-lg leading-snug">{personal.location}</div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.65, duration: 0.6 }}
+          className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2"
+        >
+          <a
+            href={`mailto:${personal.email}`}
+            className="group flex items-center gap-3 rounded-lg border border-border bg-white px-5 py-4 transition-colors hover:border-foreground/30"
           >
-            <motion.div
-              className="card-cyber px-4 py-2 rounded-lg border border-cyan-400/30"
-              whileHover={{
-                scale: 1.05,
-                borderColor: "rgba(6, 182, 212, 0.6)",
-              }}
-            >
-              <div className="text-cyan-400 font-bold font-['Orbitron'] text-xs sm:text-sm uppercase tracking-wider">
-                MCA - Sage University
-              </div>
-            </motion.div>
-            <motion.div
-              className="card-cyber px-4 py-2 rounded-lg border border-purple-400/30"
-              whileHover={{
-                scale: 1.05,
-                borderColor: "rgba(139, 92, 246, 0.6)",
-              }}
-            >
-              <div className="text-purple-400 font-bold font-['Orbitron'] text-xs sm:text-sm uppercase tracking-wider">
-                {personal.location}
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Contact Info Cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-md"
-          >
-            <motion.a
-              href={`mailto:${personal.email}`}
-              className="card-cyber p-3 rounded-lg border border-cyan-400/20 hover:border-cyan-400/50 transition-all group"
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <Mail className="w-4 h-4 text-cyan-400 mb-1" />
-              <div className="text-xs text-gray-400 font-['Orbitron'] uppercase mb-1">
-                Email
-              </div>
-              <div className="text-sm text-gray-300 font-['Rajdhani'] group-hover:text-cyan-400 transition-colors truncate">
-                {personal.email}
-              </div>
-            </motion.a>
-            <motion.a
-              href={`tel:${personal.phone}`}
-              className="card-cyber p-3 rounded-lg border border-purple-400/20 hover:border-purple-400/50 transition-all group"
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <Phone className="w-4 h-4 text-purple-400 mb-1" />
-              <div className="text-xs text-gray-400 font-['Orbitron'] uppercase mb-1">
-                Phone
-              </div>
-              <div className="text-sm text-gray-300 font-['Rajdhani'] group-hover:text-purple-400 transition-colors">
-                {personal.phone}
-              </div>
-            </motion.a>
-          </motion.div>
-
-          {/* Action Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            <motion.a
-              href="#contact"
-              className="btn-neon font-['Orbitron'] uppercase tracking-wider flex items-center gap-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get In Touch
-              <ArrowRight className="w-5 h-5" />
-            </motion.a>
-
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {[
-                { icon: Github, href: personal.github, color: "cyan" },
-                { icon: Linkedin, href: personal.linkedin, color: "purple" },
-                { icon: Mail, href: `mailto:${personal.email}`, color: "pink" },
-              ].map((social, index) => {
-                const Icon = social.icon;
-                const colorMap: Record<string, string> = {
-                  cyan: "rgba(6, 182, 212, 0.3)",
-                  purple: "rgba(139, 92, 246, 0.3)",
-                  pink: "rgba(236, 72, 153, 0.3)",
-                };
-                return (
-                  <motion.a
-                    key={social.href}
-                    href={social.href}
-                    target={
-                      social.href.startsWith("mailto:") ? undefined : "_blank"
-                    }
-                    rel={
-                      social.href.startsWith("mailto:")
-                        ? undefined
-                        : "noopener noreferrer"
-                    }
-                    className="p-3 rounded-lg glass border transition-all"
-                    style={{ borderColor: colorMap[social.color] }}
-                    whileHover={{
-                      scale: 1.2,
-                      rotate: 5,
-                      borderColor: colorMap[social.color].replace("0.3", "1"),
-                    }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Icon className={`w-5 h-5 text-${social.color}-400`} />
-                  </motion.a>
-                );
-              })}
+            <Mail className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground" />
+            <div className="min-w-0">
+              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Email</div>
+              <div className="truncate text-sm text-foreground">{personal.email}</div>
             </div>
-          </motion.div>
-        </div>
+          </a>
+          <a
+            href={`tel:${personal.phone}`}
+            className="group flex items-center gap-3 rounded-lg border border-border bg-white px-5 py-4 transition-colors hover:border-foreground/30"
+          >
+            <Phone className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground" />
+            <div className="min-w-0">
+              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Phone</div>
+              <div className="truncate text-sm text-foreground">{personal.phone}</div>
+            </div>
+          </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.75, duration: 0.6 }}
+          className="mt-8 flex flex-wrap items-center gap-3"
+        >
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] text-background transition-colors hover:bg-foreground/85"
+          >
+            Get in touch
+            <ArrowRight className="h-4 w-4" />
+          </a>
+          <div className="flex items-center gap-2">
+            {[
+              { icon: Github, href: personal.github, label: "GitHub" },
+              { icon: Linkedin, href: personal.linkedin, label: "LinkedIn" },
+              { icon: Mail, href: `mailto:${personal.email}`, label: "Email" },
+            ].map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target={social.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                aria-label={social.label}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground"
+              >
+                <social.icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
-  );
+  )
 }

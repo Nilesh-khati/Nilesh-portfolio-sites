@@ -94,7 +94,7 @@ export default function MessagesManager() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Loader2 className="w-8 h-8 animate-spin text-cyan-400" />
+        <Loader2 className="w-8 h-8 animate-spin text-highlight" />
       </div>
     )
   }
@@ -109,22 +109,22 @@ export default function MessagesManager() {
             key={message._id?.toString()}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`glass rounded-lg p-6 hover:border-cyan-400/50 transition-colors ${
-              !message.read ? "border-cyan-400/30" : ""
+            className={`glass rounded-lg p-6 hover:border-highlight/40 transition-colors ${
+              !message.read ? "border-highlight/30" : ""
             }`}
           >
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-start gap-3">
-                <div className={`p-2 rounded-lg ${message.read ? "bg-secondary" : "bg-cyan-400/10"}`}>
+                <div className={`p-2 rounded-lg ${message.read ? "bg-secondary" : "bg-highlight/10"}`}>
                   {message.read ? (
                     <MailOpen className="w-5 h-5 text-muted-foreground" />
                   ) : (
-                    <Mail className="w-5 h-5 text-cyan-400" />
+                    <Mail className="w-5 h-5 text-highlight" />
                   )}
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-foreground">{message.name}</h3>
-                  <a href={`mailto:${message.email}`} className="text-sm text-cyan-400 hover:underline">
+                  <a href={`mailto:${message.email}`} className="text-sm text-highlight hover:underline">
                     {message.email}
                   </a>
                 </div>
@@ -133,7 +133,7 @@ export default function MessagesManager() {
               <div className="flex gap-2">
                 <button
                   onClick={() => handleMarkAsRead(message._id?.toString() || "", !message.read)}
-                  className="p-2 text-muted-foreground hover:text-cyan-400 transition-colors"
+                  className="p-2 text-muted-foreground hover:text-highlight transition-colors"
                   title={message.read ? "Mark as unread" : "Mark as read"}
                 >
                   {message.read ? <Mail className="w-4 h-4" /> : <MailOpen className="w-4 h-4" />}

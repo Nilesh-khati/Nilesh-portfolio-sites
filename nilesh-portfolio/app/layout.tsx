@@ -1,19 +1,21 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Orbitron, Rajdhani } from "next/font/google"
+import { Instrument_Serif, Inter } from "next/font/google"
 import "./globals.css"
 import Providers from "@/components/providers"
 
-const orbitron = Orbitron({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-orbitron",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-serif",
+  weight: ["400"],
+  style: ["normal", "italic"],
+  display: "swap",
 })
 
-const rajdhani = Rajdhani({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-rajdhani",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
 })
 
 export const metadata: Metadata = {
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
     description: "Innovative MERN stack developer specializing in modern web applications.",
     type: "website",
   },
-    generator: 'v0.app'
+  generator: "v0.app",
 }
 
 export default function RootLayout({
@@ -36,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${orbitron.variable} ${rajdhani.variable} antialiased`} suppressHydrationWarning>
-      <body className="font-['Rajdhani']">
+    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable} antialiased`} suppressHydrationWarning>
+      <body className="font-sans">
         <Providers>{children}</Providers>
       </body>
     </html>

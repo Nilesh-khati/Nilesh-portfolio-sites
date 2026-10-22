@@ -64,95 +64,74 @@ export default function Contact() {
     }
   }
 
+  const details = [
+    { icon: Mail, label: "Email", value: personal.email, href: `mailto:${personal.email}` },
+    { icon: Phone, label: "Phone", value: personal.phone, href: `tel:${personal.phone}` },
+    { icon: MapPin, label: "Location", value: personal.location, href: undefined },
+  ]
+
   return (
-    <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-      {/* Cyberpunk Grid Background */}
-      <div className="cyber-grid opacity-20" />
-      
-      <SectionHeading number="05" title="Get In Touch" />
+    <section id="contact" className="relative px-5 py-20 sm:px-8 sm:py-28">
+      <div className="mx-auto w-full max-w-6xl">
+        <SectionHeading number="05" title="Get In Touch" />
 
-      <div className="grid md:grid-cols-2 gap-12 relative z-10 mt-12">
-        {/* Contact Info */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="space-y-6"
-        >
-          <div className="card-cyber p-6 rounded-lg">
-            <h3 className="text-2xl font-bold font-['Orbitron'] text-cyan-400 mb-4 uppercase tracking-wider">
-              Let's work together
-            </h3>
-            <p className="text-gray-300 leading-relaxed font-['Rajdhani'] text-lg">
-              I'm currently looking for new opportunities and my inbox is always open. Whether you have a question or
-              just want to say hi, I'll try my best to get back to you!
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="max-w-md font-serif text-2xl leading-snug sm:text-3xl">
+              Let&apos;s work together.
             </p>
-          </div>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+              I&apos;m currently looking for new opportunities and my inbox is always open. Whether you have a
+              question or just want to say hi, I&apos;ll try my best to get back to you.
+            </p>
 
-          <div className="space-y-4">
-            {[
-              { icon: Mail, text: personal.email, href: `mailto:${personal.email}`, color: "cyan" },
-              { icon: Phone, text: personal.phone, href: `tel:${personal.phone}`, color: "purple" },
-              { icon: MapPin, text: personal.location, href: "#", color: "pink" },
-            ].map((contact, index) => {
-              const Icon = contact.icon
-              const colorMap: Record<string, { border: string, text: string, bg: string }> = {
-                cyan: { border: 'rgba(6, 182, 212, 0.3)', text: '#06b6d4', bg: 'rgba(6, 182, 212, 0.1)' },
-                purple: { border: 'rgba(139, 92, 246, 0.3)', text: '#8b5cf6', bg: 'rgba(139, 92, 246, 0.1)' },
-                pink: { border: 'rgba(236, 72, 153, 0.3)', text: '#ec4899', bg: 'rgba(236, 72, 153, 0.1)' },
-              }
-              const colors = colorMap[contact.color] || colorMap.cyan
-              
-              return (
-                <motion.a
-                  key={contact.text}
-                  href={contact.href}
-                  className="flex items-center gap-3 p-4 rounded-lg card-cyber group transition-all"
-                  style={{ borderColor: colors.border }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = colors.border.replace('0.3', '1')
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = colors.border
-                  }}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05, x: 5 }}
-                >
-                  <div 
-                    className="p-3 rounded-lg transition-colors"
-                    style={{ backgroundColor: colors.bg }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = colors.bg.replace('0.1', '0.2')
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = colors.bg
-                    }}
+            <div className="mt-8 border-t border-border">
+              {details.map((detail) => {
+                const Icon = detail.icon
+                const content = (
+                  <>
+                    <Icon className="h-4 w-4 text-muted-foreground" />
+                    <div>
+                      <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                        {detail.label}
+                      </div>
+                      <div className="mt-0.5 text-sm text-foreground">{detail.value}</div>
+                    </div>
+                  </>
+                )
+
+                return detail.href ? (
+                  <a
+                    key={detail.label}
+                    href={detail.href}
+                    className="flex items-center gap-3 border-b border-border py-4 transition-colors hover:text-highlight"
                   >
-                    <Icon className="w-5 h-5" style={{ color: colors.text }} />
+                    {content}
+                  </a>
+                ) : (
+                  <div key={detail.label} className="flex items-center gap-3 border-b border-border py-4">
+                    {content}
                   </div>
-                  <span className="text-gray-300 group-hover:text-cyan-400 transition-colors font-['Rajdhani']">
-                    {contact.text}
-                  </span>
-                </motion.a>
-              )
-            })}
-          </div>
-        </motion.div>
+                )
+              })}
+            </div>
+          </motion.div>
 
-        {/* Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <form onSubmit={handleSubmit} className="card-cyber p-6 rounded-lg space-y-6">
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="space-y-5"
+          >
             <div>
-              <label htmlFor="name" className="block text-sm font-bold font-['Orbitron'] text-cyan-400 mb-2 uppercase tracking-wider">
+              <label htmlFor="name" className="mb-2 block text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
                 Name
               </label>
               <input
@@ -162,13 +141,16 @@ export default function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="input-cyber w-full rounded-lg font-['Rajdhani']"
+                className="input-cyber w-full rounded-lg text-sm"
                 placeholder="Your name"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-bold font-['Orbitron'] text-cyan-400 mb-2 uppercase tracking-wider">
+              <label
+                htmlFor="email"
+                className="mb-2 block text-[10px] uppercase tracking-[0.25em] text-muted-foreground"
+              >
                 Email
               </label>
               <input
@@ -178,13 +160,16 @@ export default function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="input-cyber w-full rounded-lg font-['Rajdhani']"
+                className="input-cyber w-full rounded-lg text-sm"
                 placeholder="your.email@example.com"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-bold font-['Orbitron'] text-cyan-400 mb-2 uppercase tracking-wider">
+              <label
+                htmlFor="message"
+                className="mb-2 block text-[10px] uppercase tracking-[0.25em] text-muted-foreground"
+              >
                 Message
               </label>
               <textarea
@@ -194,32 +179,30 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="input-cyber w-full rounded-lg resize-none font-['Rajdhani']"
+                className="input-cyber w-full resize-none rounded-lg text-sm"
                 placeholder="Your message..."
               />
             </div>
 
-            <motion.button
+            <button
               type="submit"
               disabled={isSubmitting}
-              className="btn-neon w-full font-['Orbitron'] uppercase tracking-wider flex items-center justify-center gap-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] text-background transition-colors hover:bg-foreground/85 disabled:opacity-50"
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  Sending...
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Sending
                 </>
               ) : (
                 <>
-                  <Send className="w-5 h-5" />
-                  Send Message
+                  Send message
+                  <Send className="h-4 w-4" />
                 </>
               )}
-            </motion.button>
-          </form>
-        </motion.div>
+            </button>
+          </motion.form>
+        </div>
       </div>
     </section>
   )

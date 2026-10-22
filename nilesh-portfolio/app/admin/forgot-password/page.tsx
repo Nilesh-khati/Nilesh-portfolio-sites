@@ -34,7 +34,7 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-background via-background to-cyan-950/20">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-background via-background to-highlight/[0.04]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -45,8 +45,8 @@ export default function ForgotPassword() {
           {!isSubmitted ? (
             <>
               <div className="text-center mb-8">
-                <div className="inline-flex p-3 rounded-full bg-cyan-400/10 mb-4">
-                  <Mail className="w-8 h-8 text-cyan-400" />
+                <div className="inline-flex p-3 rounded-full bg-highlight/10 mb-4">
+                  <Mail className="w-8 h-8 text-highlight" />
                 </div>
                 <h1 className="text-2xl font-bold text-foreground mb-2">Forgot Password?</h1>
                 <p className="text-muted-foreground text-sm">
@@ -68,7 +68,7 @@ export default function ForgotPassword() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full pl-10 pr-4 py-3 rounded-lg glass border border-border focus:border-cyan-400 focus:outline-none transition-colors text-foreground"
+                      className="w-full pl-10 pr-4 py-3 rounded-lg glass border border-border focus:border-foreground focus:outline-none transition-colors text-foreground"
                       placeholder="admin@example.com"
                     />
                   </div>
@@ -77,7 +77,7 @@ export default function ForgotPassword() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full px-6 py-3 bg-cyan-500 hover:bg-cyan-600 disabled:bg-cyan-500/50 text-white font-medium rounded-lg transition-colors shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2"
+                  className="w-full px-6 py-3 bg-foreground hover:bg-foreground/85 disabled:bg-foreground/40 text-white font-medium rounded-lg transition-colors shadow-sm flex items-center justify-center gap-2"
                 >
                   {isLoading ? (
                     <>
@@ -93,7 +93,7 @@ export default function ForgotPassword() {
               <div className="mt-6 text-center">
                 <Link
                   href="/admin/login"
-                  className="inline-flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+                  className="inline-flex items-center gap-2 text-sm text-highlight hover:text-highlight transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Back to login
@@ -114,7 +114,7 @@ export default function ForgotPassword() {
               </p>
               <Link
                 href="/admin/login"
-                className="inline-flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-highlight hover:text-highlight transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Back to login
