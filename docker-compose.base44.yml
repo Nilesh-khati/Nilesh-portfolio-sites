@@ -1,0 +1,63 @@
+name: base44-nilesh-portfolio
+
+services:
+  mongo:
+    image: mongo:7
+    restart: on-failure
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  web:
+    image: node:22
+    working_dir: /app
+    restart: on-failure
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    env_file:
+      # Placeholders first, platform-managed secrets last so real values win.
+      - ./.env.base44-defaults
+      - /run/base44/app.env
+    environment:
+      # Provided by the platform; used by next.config.mjs to allow the preview origin.
+      - BASE44_PREVIEW_MODE
+      - BASE44_PUBLIC_HOST_SUFFIX
+      - NEXT_TELEMETRY_DISABLED=1
+      # Bind mounts need polling for file watching to fire.
+      - WATCHPACK_POLLING=true
+    volumes:
+      - ./nilesh-portfolio:/app
+      - pnpm-store:/pnpm-store
+      - web-node-modules:/app/node_modules
+    command:
+      - sh
+      - -ec
+      - |
+        corepack enable
+        corepack prepare pnpm@9.15.9 --activate
+        pnpm config set store-dir /pnpm-store
+        pnpm install --frozen-lockfile
+        exec pnpm exec next dev --hostname 0.0.0.0 --port 3000
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 90s
+
+volumes:
+  mongo-data:
+  pnpm-store:
+  web-node-modules:
